@@ -8,10 +8,10 @@ FROM base as deps
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn global add node-gyp
-RUN yarn config set network-timeout 600000 -g
-RUN yarn install --immutable
+COPY package.json package-lock.json ./
+RUN npm install --global node-gyp
+RUN npm config set fetch-retry-maxtimeout 600000 -g
+RUN npm install
 
 # Development
 FROM base AS development
@@ -26,4 +26,4 @@ USER node
 EXPOSE 1337
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["yarn", "develop"]
+CMD ["npm", "run", "develop"]
