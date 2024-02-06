@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import Logo from '@/components/logo';
 
 const IntranetLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <div>
       <header className="border-b">
         <div className="flex h-16 items-center justify-between space-x-4 px-4">
-          <h1>Grupo GISAP</h1>
+          <Logo />
           <div className="flex justify-end space-x-4">
             <nav className="flex space-x-6 text-sm">
               <Link href="/intranet/administracion">Inicio</Link>
