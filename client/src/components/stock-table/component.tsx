@@ -11,7 +11,7 @@ import {
 
 import data from './data.json';
 
-const HistoryTable = () => {
+const StockTable = () => {
   return (
     <div className="rounded-md border">
       <Table>
@@ -19,18 +19,16 @@ const HistoryTable = () => {
           <TableRow>
             <TableHead>Código material</TableHead>
             <TableHead>Nombre material</TableHead>
-            <TableHead>Orden</TableHead>
-            <TableHead>Fecha utilización</TableHead>
-            <TableHead className="text-right">Unidades utilizadas</TableHead>
+            <TableHead>Fecha entrega</TableHead>
+            <TableHead className="text-right">Unidades disponibles</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.map((d) => (
-            <TableRow key={d.code}>
-              <TableCell>{d.id}</TableCell>
-              <TableCell>{d.material}</TableCell>
+            <TableRow key={d.id}>
               <TableCell>{d.code}</TableCell>
-              <TableCell>{d.order_date}</TableCell>
+              <TableCell>{d.material}</TableCell>
+              <TableCell>{d.delivered_at}</TableCell>
               <TableCell className="text-right">{d.amount}</TableCell>
             </TableRow>
           ))}
@@ -40,4 +38,4 @@ const HistoryTable = () => {
   );
 };
 
-export default HistoryTable;
+export default StockTable;

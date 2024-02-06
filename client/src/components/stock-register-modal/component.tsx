@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
-const MaterialRegisterModal = () => {
+const StockRegisterModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,4 +27,4 @@ const MaterialRegisterModal = () => {
   );
 };
 
-export default MaterialRegisterModal;
+export default StockRegisterModal;

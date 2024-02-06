@@ -1,24 +1,14 @@
-import HistoryTable from '@/components/history-table';
-import InventaryTable from '@/components/inventary-table';
-import MaterialRegisterModal from '@/components/material-register-modal';
+import StockTable from '@/components/stock-table';
 
-const DashboardPage = () => {
+const StockPage = () => {
   return (
-    <div className="space-y-10">
-      <div>
-        <h2>Inventario materiales disponibles</h2>
-        <InventaryTable />
+    <div className="space-y-4">
+      <div className="flex justify-between">
+        <h2>Inventario material disponible</h2>
       </div>
-
-      <div>
-        <div className="flex justify-between">
-          <h2>Histórico de uso de materiales</h2>
-          <MaterialRegisterModal />
-        </div>
-        <HistoryTable />
-      </div>
+      <StockTable />
     </div>
   );
 };
 
-export default DashboardPage;
+export default StockPage;
