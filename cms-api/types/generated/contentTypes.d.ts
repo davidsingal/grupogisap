@@ -781,6 +781,138 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiMaterialMaterial extends Schema.CollectionType {
+  collectionName: 'materials';
+  info: {
+    singularName: 'material';
+    pluralName: 'materials';
+    displayName: 'Material';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    serial: Attribute.String;
+    code: Attribute.String & Attribute.Required & Attribute.Unique;
+    amount: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>;
+    delivered_at: Attribute.Date & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMaterialAllocationMaterialAllocation
+  extends Schema.CollectionType {
+  collectionName: 'material_allocations';
+  info: {
+    singularName: 'material-allocation';
+    pluralName: 'material-allocations';
+    displayName: 'Material allocation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    material: Attribute.Relation<
+      'api::material-allocation.material-allocation',
+      'oneToOne',
+      'api::material.material'
+    >;
+    delivered_at: Attribute.Date & Attribute.Required;
+    amount: Attribute.Integer & Attribute.Required;
+    users_permissions_user: Attribute.Relation<
+      'api::material-allocation.material-allocation',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::material-allocation.material-allocation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::material-allocation.material-allocation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWorkOrderWorkOrder extends Schema.CollectionType {
+  collectionName: 'work_orders';
+  info: {
+    singularName: 'work-order';
+    pluralName: 'work-orders';
+    displayName: 'Work order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Attribute.String & Attribute.Required;
+    order_date: Attribute.Date;
+    material: Attribute.Relation<
+      'api::work-order.work-order',
+      'oneToOne',
+      'api::material.material'
+    >;
+    amount: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::work-order.work-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::work-order.work-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -799,6 +931,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::material.material': ApiMaterialMaterial;
+      'api::material-allocation.material-allocation': ApiMaterialAllocationMaterialAllocation;
+      'api::work-order.work-order': ApiWorkOrderWorkOrder;
     }
   }
 }
