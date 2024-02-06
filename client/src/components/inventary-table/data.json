@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "code": "SMBX34405721",
+    "material": "Roseta óptica",
+    "amount": 1,
+    "delivered_at": "2021-01-01"
+  },
+  {
+    "id": 2,
+    "code": "SMBX34405722",
+    "material": "Roseta óptica",
+    "amount": 1,
+    "delivered_at": "2021-01-01"
+  },
+  {
+    "id": 3,
+    "code": "SMBX34405723",
+    "material": "Roseta óptica",
+    "amount": 1,
+    "delivered_at": "2021-01-01"
+  },
+  {
+    "id": 4,
+    "code": "SMBX34405724",
+    "material": "Roseta óptica",
+    "amount": 1,
+    "delivered_at": "2021-01-01"
+  },
+  {
+    "id": 5,
+    "code": "SMBX34405725",
+    "material": "Roseta óptica",
+    "amount": 1,
+    "delivered_at": "2021-01-01"
+  }
+]
