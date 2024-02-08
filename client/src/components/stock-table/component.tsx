@@ -11,22 +11,18 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import api from '@/services/api';
+import Loader from '@/components/loader';
 import type { MaterialResponse } from '@/types/api-response';
-import { Loader2Icon } from 'lucide-react';
 
 const StockTable = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ['todos'],
+    queryKey: ['stock'],
     queryFn: () => api.get<MaterialResponse>('/api/materials').then((res) => res.data),
   });
 
   return (
     <div className="rounded-md border">
-      {isLoading && (
-        <div className="flex items-center justify-center p-4">
-          <Loader2Icon className="h-8 w-8 animate-spin text-primary" />
-        </div>
-      )}
+      {isLoading && <Loader />}
       {data?.data && (
         <Table>
           <TableHeader>

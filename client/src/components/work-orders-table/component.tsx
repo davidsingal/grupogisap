@@ -8,28 +8,37 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
-import data from './data.json';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/services/api';
+import Loader from '@/components/loader';
+import type { WorkOrderResponse } from '@/types/api-response';
 
 const WorkOrdersTable = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['stock'],
+    queryFn: () => api.get<WorkOrderResponse>('/api/work-orders').then((res) => res.data),
+  });
   return (
     <div className="rounded-md border">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Código de órden</TableHead>
-            <TableHead>Fecha</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((d) => (
-            <TableRow key={d.id}>
-              <TableCell>{d.code}</TableCell>
-              <TableCell>{d.created_at}</TableCell>
+      {isLoading && <Loader />}
+      {data?.data && (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Código de órden</TableHead>
+              <TableHead>Fecha</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {data.data.map((d) => (
+              <TableRow key={d.id}>
+                <TableCell>{d.attributes.code}</TableCell>
+                <TableCell>{d.attributes.order_date}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </div>
   );
 };
