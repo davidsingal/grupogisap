@@ -33,6 +33,11 @@
     "delivered_at": {
       "type": "date",
       "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

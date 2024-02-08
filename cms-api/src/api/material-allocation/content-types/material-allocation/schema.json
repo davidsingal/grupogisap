@@ -17,7 +17,7 @@
       "relation": "oneToOne",
       "target": "api::material.material"
     },
-    "delivered_at": {
+    "used_at": {
       "type": "date",
       "required": true
     },
@@ -25,10 +25,10 @@
       "type": "integer",
       "required": true
     },
-    "users_permissions_user": {
+    "work_order": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "target": "api::work-order.work-order"
     }
   }
 }
