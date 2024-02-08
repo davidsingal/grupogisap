@@ -15,7 +15,7 @@ import type { MaterialAllocationResponse } from '@/types/api-response';
 
 const HistoryTable = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ['stock'],
+    queryKey: ['register-stock-table'],
     queryFn: () =>
       api
         .get<MaterialAllocationResponse>('/api/material-allocations', {
@@ -26,7 +26,7 @@ const HistoryTable = () => {
         })
         .then((res) => res.data),
   });
-  console.log(data);
+
   return (
     <div className="rounded-md border">
       {isLoading && <Loader />}

@@ -15,9 +15,10 @@ import type { WorkOrderResponse } from '@/types/api-response';
 
 const WorkOrdersTable = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ['stock'],
+    queryKey: ['work-orders-table'],
     queryFn: () => api.get<WorkOrderResponse>('/api/work-orders').then((res) => res.data),
   });
+
   return (
     <div className="rounded-md border">
       {isLoading && <Loader />}

@@ -16,7 +16,7 @@ import type { MaterialResponse } from '@/types/api-response';
 
 const StockTable = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ['stock'],
+    queryKey: ['stock-table'],
     queryFn: () => api.get<MaterialResponse>('/api/materials').then((res) => res.data),
   });
 
