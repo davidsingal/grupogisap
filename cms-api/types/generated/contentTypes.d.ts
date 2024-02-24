@@ -806,6 +806,11 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       > &
       Attribute.DefaultTo<1>;
     delivered_at: Attribute.Date & Attribute.Required;
+    users_permissions_user: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -842,12 +847,12 @@ export interface ApiMaterialAllocationMaterialAllocation
       'oneToOne',
       'api::material.material'
     >;
-    delivered_at: Attribute.Date & Attribute.Required;
+    used_at: Attribute.Date & Attribute.Required;
     amount: Attribute.Integer & Attribute.Required;
-    users_permissions_user: Attribute.Relation<
+    work_order: Attribute.Relation<
       'api::material-allocation.material-allocation',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::work-order.work-order'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -881,20 +886,6 @@ export interface ApiWorkOrderWorkOrder extends Schema.CollectionType {
   attributes: {
     code: Attribute.String & Attribute.Required;
     order_date: Attribute.Date;
-    material: Attribute.Relation<
-      'api::work-order.work-order',
-      'oneToOne',
-      'api::material.material'
-    >;
-    amount: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

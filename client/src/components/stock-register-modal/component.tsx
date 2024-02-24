@@ -48,13 +48,8 @@ const StockRegisterModal = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            <p>
-              This action cannot be undone. This will permanently delete your account and remove
-              your data from our servers.
-            </p>
-
+          <DialogTitle>Nuevo registro</DialogTitle>
+          <div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" noValidate>
                 <FormField
@@ -86,7 +81,7 @@ const StockRegisterModal = () => {
                 <Button type="submit">Submit</Button>
               </form>
             </Form>
-          </DialogDescription>
+          </div>
         </DialogHeader>
       </DialogContent>
     </Dialog>
